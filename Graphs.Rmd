@@ -1,0 +1,217 @@
+---
+title: "graphs"
+author: "18f0371"
+date: "11/11/2021"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup}
+
+data(airquality)
+str(airquality)
+```
+
+## R Markdown
+
+
+
+```{r cars}
+
+str(airquality)
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r plot1}
+
+plot(airquality$Ozone)
+```
+
+
+```{r pressure }
+summary(airquality)
+```
+```{r girdchart12}
+par(mfrow=c(3,3), mar=c(2,5,2,1), las=1, bty="n")
+plot(airquality$Ozone)
+plot(airquality$Ozone, airquality$Wind)
+plot(airquality$Ozone, type= "c")
+plot(airquality$Ozone, type= "s")
+plot(airquality$Ozone, type= "h")
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col='green',horiz = TRUE)
+hist(airquality$Solar.R)
+boxplot(airquality$Solar.R)
+```
+
+
+```{r girdchart2}
+library(lattice)  
+#Loading the dataset
+attach(mtcars)
+gear_factor<-factor(gear,levels=c(3,4,5),
+labels=c("3gears","4gears","5gears")) 
+   
+cyl_factor <-factor(cyl,levels=c(4,6,8),
+labels=c("4cyl","6cyl","8cyl"))
+densityplot(~mpg, main="Density Plot",  xlab="Miles per Gallon")
+```
+
+
+```{r girdchart4}
+xyplot(mpg~wt|cyl_factor*gear_factor,  
+main="Scatterplots : Cylinders and Gears",  
+ylab="Miles/Gallon", xlab="Weight of Car")
+```
+
+
+```{r ggplot12}
+library(ggplot2)
+   
+#Loading the dataset
+attach(mtcars)
+# create factors with value labels 
+ 
+# mtcars$gear <- factor(mtcars$gear,levels=c(3,4,5),  
+# labels=c("3gears", "4gears", "5gears"))  
+# mtcars$am <- factor(mtcars$am,levels=c(0,1),  
+# labels=c("Automatic","Manual"))  
+# mtcars$cyl <- factor(mtcars$cyl,levels=c(4,6,8),  
+# labels=c("4cyl","6cyl","8cyl"))
+```
+
+```{r}
+library(plotly)
+p <- plot_ly(data = mtcars, x = ~hp, y = ~wt)
+p
+```
+
+
+```{r}
+p <- plot_ly(data = mtcars, x = ~hp, y = ~wt, marker = list(size = 10, color = 'rgba(255, 182, 193, .9)', line = list(color = 'rgba(152, 0, 0, .8)', width = 2)))
+p
+```
+```{r}
+data1 <- rnorm(100, mean = 10)   
+data2 <- rnorm(100, mean = 0)   
+data3 <- rnorm(100, mean = -10)   
+x <- c(1:100)
+data <- data.frame(x, data1, data2, data3)
+p <- plot_ly(data, x = ~x)%>%   
+    
+add_trace(y = ~data1, name = 'data1',mode = 'lines')%>%             
+add_trace(y = ~data2, name = 'data2', mode = 'lines+markers')%>% 
+add_trace(y = ~data3, name = 'data3', mode = 'markers')
+p
+```
+```{r}
+p <- plot_ly(data = mtcars, x =~hp, y = ~wt,color = ~hp, size = ~hp )
+p
+```
+```{r}
+library(maps)
+map(database='state')
+
+data <- read.csv('ABC_locations.csv', sep=",")
+head(data)
+```
+
+```{r}
+data <- read.csv('ABC_locations.csv', sep=",")
+head(data)
+```
+
+```{r}
+plot(data$Longitude,data$Latitude)
+```
+
+```{r}
+# library(plotly)
+# library(maps)
+```
+
+
+
+
+```{r ggplot2}
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, size = qsec)) + geom_point()
+```
+
+```{r ggplot1}
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg)) + geom_point()
+```
+
+
+```{r girdchart3}
+splom(mtcars[c(1,3,4,5,6)], main="MTCARS Data")
+```
+
+
+```{r girdchart}
+boxplot(airquality[,0:4], main='Multiple Box plots')
+```
+
+
+```{r barplot6}
+boxplot(airquality[,0:4], main='Multiple Box plots')
+```
+
+
+```{r barplot5}
+boxplot(airquality$Solar.R)
+```
+
+
+```{r barplot4}
+hist(airquality$Solar.R, main = 'Solar Radiation values in air',xlab = 'Solar rad.', col='red')
+```
+
+
+```{r barplot3}
+hist(airquality$Solar.R)
+```
+
+
+```{r barplot2}
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col='red',horiz = FALSE)
+```
+
+
+```{r barplot}
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col= 'green',horiz = TRUE)
+```
+
+
+```{r plot4lines3}
+plot(airquality$Ozone, xlab = 'ozone Concentration', ylab = 'No of Instances', main = 'Ozone levels in NY city', col = 'green')
+```
+
+
+```{r plot4lines2}
+plot(airquality$Ozone, type= "h")
+```
+
+
+```{r plot4lines}
+plot(airquality$Ozone, type= "b")
+
+```
+
+
+```{r plot2}
+plot(airquality)
+
+```
+
+
+```{r plot3}
+plot(airquality$Ozone, airquality$Wind)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
